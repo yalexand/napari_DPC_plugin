@@ -196,7 +196,7 @@ class DPC_widget(QWidget):
                 
         add_section(layout,'')
         
-        btn = QPushButton('Process frame')
+        btn = QPushButton('Process current frame')
         btn.clicked.connect(self.process_current_frame)
         layout.addWidget(btn)
         
