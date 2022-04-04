@@ -298,3 +298,10 @@ def normalize99(img):
     X = img.copy()
     X = (X - np.percentile(X, 1)) / (np.percentile(X, 99) - np.percentile(X, 1))
     return X
+
+# sigmoid-linear unit
+def SILIU(x,x0=0.0,width=0.1,p=6): # x presumed numpy array
+    z = np.power((x-x0)/width,p)
+    z = 1./(1.+np.exp(-z))
+    return x*np.power(z,p)
+    

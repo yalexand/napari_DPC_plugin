@@ -17,7 +17,7 @@ import numpy as np
 
 import tifffile
 
-from utils import pDPC_reconstruction, normalize99, binning_img #, ImgToReg 
+from utils import pDPC_reconstruction, normalize99, binning_img, SILIU #, ImgToReg 
 
 # from skimage.morphology import remove_small_objects
 
@@ -242,6 +242,9 @@ class DPC_widget(QWidget):
                                     
             if 'DPC'==self.sgm_source_combo.currentText():
                 img = img_dpc_rec
+                # apply weak noise suppression
+                img[img<0]=0
+                img = SILIU(img,width=0.12,p=6)
             else:
                 if 'fluor'==self.sgm_source_combo.currentText():
                     img = fluor_ch1
